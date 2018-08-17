@@ -1,0 +1,277 @@
+/*今天我们学习Timer类。
+ASP.NET timer控件与Timer类作用相同 作为定时器使用*From CSDN
+*/
+
+//实例化Timer类
+Timer timer=new Timer(); //also我们可以在括号里面加上整型，表示速度
+//准备定时启动
+void timer_Elapsed(object sender, ElapsedEventArgs e)
+{
+	response.write(DateTime.Now.ToString());
+}
+
+//配置Timer的属性
+//定义时间
+timer.Elapsed += new ElapsedEventHandler(timer_Elapsed);
+//设置timer的状态为启用
+timer.Enabled=true;
+//设置timer的间隔时间
+timer.Interval=60;
+
+
+
+/*
+几种Timer类的使用 From Blog
+*/
+
+
+//System.Threading.Timer
+public Timer(TimerCallback callback, object state, int dueTime, int period);
+//callback委托、 state参数传入委托对象、dueTime表示多久后开始执行、period表示多久执行一次callback
+using System.Threading;
+
+Timer timer = new Timer(delegate
+{
+	Console.WriteLine($"Timer Thread: {Thread.CurrentThread.ManagedThreadId}");
+	console.WriteLine($"Is Thread Pool: {Thread.CurrentTread.IsThreadPoolThread}");
+	console.WriteLine("Timer Action.");
+},   //这里的delegate我看不懂意思？？？
+null,
+2000,
+1000
+);   //回头复习委托
+
+Console.WriteLine("Main Action");
+Console.WriteLine($"Main Thread: {Thread.CurrentThread.ManagedThreadId}");
+Console.ReadLine();
+
+
+//System.Timers.Timer *
+//与前者相比提供更多的属性
+//interval  指定执行Elapsed事件的间隔
+//Elapsed 指定定期执行的事件
+//Enabled 用于Start/Stop Timer
+//Start   开启Timer
+//Stop    停止Timer
+System.Timers.Timer timer = new System.Timers.Timer();
+timer.Interval = 500;
+timer.Elapsed +=delegate
+{
+	Console.WriteLine($"Timer Thread: {Thread.CurrentThread.ManagedThreadId}");
+	console.WriteLine($"Is Thread Pool: {Thread.CurrentTread.IsThreadPoolThread}");
+	console.WriteLine("Timer Action.");
+	timer.Stop();
+}
+
+timer.Start();
+Console.WriteLine("Main Action.");
+Console.WriteLine($"Main Thread: {Thread.CurrentThread.ManagedThreadId}");
+Console.ReadLine();
+
+
+//System.Windows.Forms.Timer
+//Interval 
+//Tick 指定定期执行的事件
+using System.Windows.Forms;
+public Form1()
+{
+	InitializeComponent();
+	this.Load += delegate
+	{
+		Timer timer = new Timer();
+		timer.Interval = 500;
+		timer.Tick += delegate
+		{
+			System.Diagnostics.Debug.WriteLine($"Timer Thread: {System.Threading.Thread.CurrentThread.ManagedThreadId}");
+			System.Diagnostics.Debug.WriteLine($"Is Thread Pool: {System.Threading.Thread.CurrentThread.IsThreadPoolThread}");
+			this.lblTimer.Text = DateTime.Now.ToLongTimrString(); 
+		};
+		timer.Start();
+		System.Diagnostics.Debug.WriteLine($"Main Thread: {System.Threading.Thread.CurrenThread.ManagedThreadId}");
+	};
+}  //Today 20180616 
+
+//System.Winsows.Threading.DispatcherTimer
+//属性和方法与System.Windows.Forms.Timer类似
+
+using System.Windows.Threading;
+
+public MainWindow()
+{
+	InitializeComponent();
+	this.Loaded += delegate
+	{
+		//DispatcherTimer
+		DispatcherTimer timer = new DispatcherTimer();
+		timer.Interval=TimerSpan.FromSeconds(1);
+		timer.Start();
+		Debug.WriteLine($"Main Thread Id: {Thread.CurrentThread.ManagedThreadId}");
+		timer.Tick +=delegate
+		{
+		tbTime.Text = DateTime.Now.ToLongTimeString();	
+		Debug.WriteLine($"Timer Thread Id: {Thread.CurrentThread.ManagedThreadId}");
+		timer.Stop();
+		};
+	};
+}
+
+//delegate的用法
+//委托实际上是一个函数指针，是一个函数的包装
+
+//声明
+public delegate double MyDelegate(double x);
+
+//实例化
+MyDelegated d2 = new MyDelegate(obj.myMethod); //右边可以简化为obj.myMethod
+
+//调用
+//把一个函数名包装成变量
+d2(8.9);
+
+//c#4.0 以上自带了很多委托如：
+Action<T1,T2>
+Func<T1,T2,Tresult>
+
+//委托的合并->MulticastDelegate
+//一个委托实例中可以“包含”多个函数
+//调用委托，就是调用其中多个函数
+//多个函数的先后顺序没有意义
+
+
+//委托的转换
+//按声明的名称判断
+
+//委托的判断
+//虽然不可以互相转换，但是可以判断是否相等
+
+//总的来说，委托作为函数指针使用，更加安全，属于引用类型
+
+//code as fllows
+using System;
+delegate double Fun(double x);
+
+public class DelegateIntegral
+{
+	public static void Main()
+	{
+		Fun fun = new Fun(Math.Sin);
+		souble d = Integral(fun, 0, Math.PI/2, 1e-4);
+		Console.WriteLine(d);
+		
+		Fun fun2 = new Fun(Linear);
+		double d2 = Integral(fun2, 0, 2, 1e-3);
+		Console.WriteLine(d2);
+		
+		Rnd rnd = new Rnd();
+		double d3 = Integral(new Fun(rnd.Num), 0,1, 0.01);
+		Console.WriteLine(d3);	
+	}
+	
+	static double Linear(double a)
+	{
+		return a*2+1;
+	}
+	
+	class Rnd
+	{
+		Random r = new Random();
+		public double Num(double x)
+		{
+			return r.NextDouble();
+		}
+	}
+	
+	static double Integral(Fun f, double a, double b, double eps)//积分计算
+	{
+		int n,k;
+		double fa,fb,h,t1,p,s,x,t=0;
+		fa=f(a);
+		fb=f(b);
+		//迭代计算
+		while(p>=eps)
+		{
+			s=0.0;
+			for(k=0;k<=n-1,k++)
+			{
+				x=a+(k+0.5)*h;
+				s=s+f(x);
+			}
+			t=(t1+h*s)/2.0;
+			p=Math.Abs(t1-t);
+			t1=t;
+			n=n+n;
+			h=h/2.0;
+		}
+		return t;
+	}
+}
+
+
+//code sample 2
+using System;
+delegate void D(int x);
+class C
+{
+	public static void M1(int i)
+	{
+		Console.WriteLine("C.M1:"+i);
+	}
+	public static void M2(int i)
+	{
+		Console.WriteLine("C.M2:"+i);
+	}
+	public void M3(int i)
+	{
+		Console.WriteLine("C.M3:"+i);
+	}
+}
+class Test
+{
+	static void Main()
+	{
+		D cd1 = new D(C.M1);
+		cd1(-1); //call M1
+		D cd2 = null;
+		cd1 += new D(C.M2);  //call M2
+		D cd3 = cd1 + cd2;
+		cd3(10);  // call M1 then M2
+		cd3 += cd1;
+		cd3(20);  // call M1, M2, then M1
+		C c = new C();
+		D cd4 = new D(c.M3);
+		cd3 += cd4;
+		cd3(30);  //call M1,M2,M1,then M3
+		cd3 -= cd1;  //remove last M1
+		cd4(40);     //call M1,M2,then M3
+		cd3 -=cd4;
+		cd4(50);     //call M1 then M2
+		cd3 -= cd2;
+		cd3(60);  //call M1
+		cd3 -= cd2; //impossible removal is begin
+		cd3(60)   //call M1
+		cd3 -= cd1 //invocation list is empty
+		Console.WriteLine( cd3 == null);
+		// cd3(70);   //System.NullReferenceException thrown
+		cd3 -= cd1; //impossible removal
+		Console.WriteLine(cd3 == null);
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
