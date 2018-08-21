@@ -1,0 +1,135 @@
+ //C#异常处理
+ try{...}
+ catch(Exception e){...}
+ finally{...}
+ 
+ //System.Exception类
+ //public Exception();
+ 
+ //子类异常（更具体的异常）要写到父类异常（更一般的异常）的前面
+ try
+ catch(AException e1){}
+ catch(BException e2){}
+ catch(更一般的异常){}
+ finally{}
+ 
+ //throw抛出一个异常
+ throw expression
+ if() throw new Some Exception
+ 
+ //创建用户自定义异常
+ //从Exception或ApplicationException继承
+ //重抛异常
+ throws;
+ //异常链接、
+ throw new Exception("msg",e);
+ //这里e成为内部异常
+ //从外部能看到异常原因
+ InnerException
+ 
+ 
+ //算数溢出与checked
+ //对溢出进行处理
+ //对整个程序 csc/ checked xxx.csc/
+ //对部分程序是否检查算数溢出
+ //针对表达式：checked(表达式)及unchecked(表达式)
+ //针对块语句：checked{...}及unchecked{...}
+ 
+ 
+ //summary
+ try
+ catch(Exception e){}
+ finally{}
+ //自定义异常类
+ //从Exception或ApplicationException继承
+ 
+ //code as follows
+ 
+ using System;
+ public class DataHouse
+ {
+	 public static void FindData(long ID)
+	 {
+		 if(ID>0 && ID<1000)
+			 Console.WriteLine(ID);
+		 else 
+			 throw new DataHouseException("已到文件尾");
+	 }
+ }
+ public class BankATM
+ {
+	 public static void GetBalanceInfo(long ID)
+	 {
+		 try{DataHouse.FindData(ID);}
+		 catch(DataHouseException e){throw new MyAppException("账户不存在",e);}
+	 }
+ }
+ public class DataHouseException:ApplicationException
+ {
+	 public DataHouseException(string message):base(message){}
+	 
+ }
+ public class MyAppException:ApplicarionException
+ {
+	 public MyAppException(string message):base(message){}
+	 public MyAppException(string message, Exception inner):base(messgae,inner){}
+ }
+ 
+ public class Test
+ {
+	 public static void Main()
+	 {
+		 try{BankATM.GetBalanceInfo(12345L);}
+		 catch(Exception e)
+		 {
+			 Console.WriteLine("出现了异常:{0}",e.Message);
+			 Console.WriteLine("内部原因：{0}",e.InnerException.Message);
+		 }
+	 }
+ }
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 

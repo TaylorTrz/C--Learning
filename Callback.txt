@@ -1,0 +1,188 @@
+//事件callback
+
+//基本的写法 +=
+
+//事件的声明
+//public event 委托名 事件名
+
+//事件的注册与移除
+//事件名 += 或 -=
+//在事件所在类的外面，只能用以上两个运算符
+
+//事件的发生（激发）
+//事件名（参数列表）
+//相当于回调所注册的函数
+
+//网络爬虫
+//EventWhenDownload.cs
+
+//定义或使用事件的6步曲
+//公用的
+//声明事件参数类： class xxxEventArgs{}
+//声明委托： delegate void xcxxEventHandler(obj, args)
+
+//在一个类中
+//定义事件：public event 类型 名称
+//发生时间： 事件名（参数）
+
+//别的类中
+//定义一个方法： void 方法名（obj, args）
+//注册一个事件： xxx 事件 += new 委托名(方法名)
+
+/*
+事件与委托的关系
+*/
+
+//事件有点像委托类型的实例
+//事件的运算受限制，在别的类中使用只能使用+=或-=
+
+//事件比委托实例更复杂
+//可以定义事件存取器
+
+//summary
+//事件是一种消息机制
+//事件源调用事件，别的类注册事件
+//事件的类型是一个委托
+//事件是C#语言最特别的东西，别的语言不一定要有
+
+//code as fllows
+//a internet craw
+using System;
+
+public delegate void DownloadStartHandler(object sender, DownloadStartEventArg e) //声明委托
+public delegate void DownloadEndHandler(object sender, DownloadEndEventArgs e);
+public delegate void DownloadingHander(object sender, DownloadingEventArgs e);
+
+public class DownloadStartEventArgs
+{
+	public string Url{ get{return _url;} set{_url=value;}}
+	private string _url;
+	
+	public DownloadStartEventArgs(string url){this._url = url;}
+}
+
+public class DownloadEndEventArgs
+{
+	public string Url{get{return _url;} set{_url=value;}};
+	private string _url;
+	
+	public long ByteCount{ get{return _byteCount;} set{_byteCount=value;}}
+	private long _byteCount;
+	
+	public DownloadEndEventArgs(string url, long size){this._url = url; this._byteCount=size;}
+}
+
+public class DownloadingEventArgs
+{
+	public string Url{ get{return _url;} set{_url=value;}}
+	private string  _url;
+	
+	public double Percent{get{ return _percent;} set{_percent=value;}}
+	private double _percent;
+	
+	public DownloadingEventArgs(string url, double percent){this._url=url; this._percent=perceng;}
+}
+
+public class DownloadingEventArgs
+{
+	public string Url{get{return _url;} set{_url=value;}}
+	private string _url;
+	
+	public double Percent{get{return _percent;} set{_percent=value;}}
+	private double _percent;
+	
+	public DoenloadingEventArgs(string url, double percent){this._url=url; this._percent=percent;}
+}
+
+public class Crawler
+{
+	public event DownloadStartHandler DownloadStart; //声明事件
+	public event DownloadEndHandler DownloadEnd;     
+	public event DownloadingHandler Downloading;
+	
+	public string Name{get{return name;} set{name=value;}}
+	private string name;
+	private string site;
+	
+	public Crawler(string name, string site)
+	{
+		this.name = name;
+		this.site = site;
+	}
+	
+	public void Craw()
+	{
+		while(true)
+		{
+			string url = GetNextUrl();
+			if(url == null) break;
+			long size = GetSizeOfUrl(url);
+			//下载开始的事件发生
+			if(DownloadStart != null) 
+			{
+				DownloadStart(this, new DownloadStartEventArgs(url));
+			}
+			
+			for(long i=0;i<size+1024;i+=1024)
+			{
+				//downloading...
+				System.Threading.Thread.Sleep(100);
+				double percent = (int)(i*100.0/size);
+				if(percent>100) percent=100;
+				
+				if(Downloading !=null)
+				{
+					Downloading(this, new DownloadingEventArgs(url, percent));
+				}
+			}
+			
+			if(DownloadEnd !=null)
+			{
+				DownloadEnd(this, new DownloadEndEventArgs(url,size));
+			}
+		}
+	}
+	private string GetNextUrl()
+	{
+		int a=rnd.Next(10);
+		if(a == 0) return null;
+		return site + "/page" + a + ".htm";
+	}
+	private long GetSizeOfUrl(string url)
+	{
+		return rnd.Next(3000*url.Length);
+	}
+	private Random rnd = new Random();
+}
+
+class Test
+{
+	static void Main()
+	{
+		Crawler crawler = new Crawler("Crrawler101", "http://www.pku.rdu.cn");
+		
+		crawler.DownloadStart += new DownloadStartHandler(ShowStart); //注册事件
+		crawler.DownlodEnd += new DownloadEndHandler(ShowEnd);
+		crawler.Downloading += new DownloadingHandler(ShowPercent);
+		
+		crawler.Craw();
+	}
+	
+	static void ShowStart(object sender, DownloadStartEventArgs e)
+	{
+		Console.WriteLine((sender as Crawler).Name + "开始下载" +e.Url);
+	}
+	static void ShowEnd(object sender, DownloadEndEventArgs e)
+	{
+		Console.WriteLine("\n\r下载" + e.Url + "结束下载" + e.ByteCount + "字节")；
+	}
+	static void ShowPercent(object sender, DownloadingEventArgs e)
+	{
+		Console.Write("\r下载" + e.Url + "......" + r.Percent + "%");
+	}
+}
+
+
+
+
+
