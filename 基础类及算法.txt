@@ -1,0 +1,190 @@
+//统一的编程API：NET Framework类库
+
+
+System.Windows.Forms
+System.Drawing
+System.(IO Collections)
+System.Xml
+Systrm.Data
+//C#有许多定义好的类库，下面将介绍一些常用的类库
+
+
+//基本类型及类型转换
+//任何事物都是对象，都是Object类的子类
+任何对象都有如下方法：
+ToString()    Equals()  GetType() 
+MemberwiseClone()等
+//常量也是对象
+3.ToString()
+"Hello".Length
+
+//表达式中的类型转换
+当有不同类型的混合运算时可以进行类型转换
+int->long->float->double
+在运算时所有的byte、short、char等自动转为Int(整型提升)
+//强制类型转换
+
+//类型转换函数
+//System.Convert类有以下的static方法
+ToDouble()
+ToInt32()
+ToDateTime()
+
+//基本类型
+//关键字含有等价的类
+int的类型是System.Int32
+//任何东西都有类型、且含有一些特殊的属性和方法 
+int.MaxValue
+double.NaN
+double.PositiveInfinity
+double.IsNaN(...)
+int.Parse(string)//解析字符串成整数
+int.TryParse(...)
+double.ToString();//对double类型转换成String类
+
+//Math类
+Abs();
+Sin() Cos() Tan() //弧度单位
+Round()
+Exp() log()
+Pow()
+
+//Random类
+.Next(100) //0到100之间（不含100）
+.NextDouble() //0到1之间
+//Random得到的是伪随机，如果要用更强的随机数：
+System.Security.Cryptograpgy类
+.RNFCryptoServiceProvider方法
+
+//DateTime及TimeSpan类
+//DateTime是Struct值类型
+new DateTime(y,m,d,h,m,s)
+.Now
+.ToString("yyyy-MM-dd HH:mm:ss")
+.AddMinutes(5)
+.Year .Month .Day .Date
+//TimeSpan类
+两个DateTime日期相减，可以得到一个TimeSpan时间跨度
+
+//String类
+//应用类型
+== + [] //内容是否相等   连接   索引
+.Length   .IndexOf  .LastIndexOf  //长度   取下标   反向取下标
+.StartsWith  .EndsWith  //以...开始、结束
+.Substring(idx,len)  //求子串，与jave不同
+.Trim .TrimEnd  .PadLeft  .Insert   .Remove  //去空格  去末尾  左边填充  插入（原字符串不变，返回新串）  移除（原字符串不变，返回新串）
+.Split(';')  string.Join  //按;进行分割    Join将字符串进行连接
+//String内容不可改变（immutable）
+StringBuilder内容可变
+.Append  .Remove  .Replace
+.Length  .ToString
+//在循环体中使用s+=...可能会导致内存消耗过大，会不断产生新类。因此如果字符串涉及到循环，建议用StringBuilder类
+
+//数组、集合与泛型
+//int[] a;
+//要用new来分配空间
+
+//集合类
+System.Collections命名空间
+//数组列表 ArrayList
+相当于动态数组，实现IList(可以放多个元素，元素的个数不固定)
+//哈希表 Hashtable
+相当于键/值得集合，实现IDictionary
+用[]进行访问，进行增删查改
+用于查询时，比进行线性搜索的效率要高
+//栈和队列 Stack Queue
+
+//foreach访问数组与集合
+foreach(类型 变量 in xxxx)
+//其中xxxx必须是实现了IEnummerable接口或含有GetEnumerator方法的类型
+//这个方法的原型是IEumerator GetEnumerator();
+//返回的是一个借口 IEnumerator
+current属性
+MoveNext及Reset方法
+
+//泛型集合
+//泛型具更好的类型检查及性能
+//System.Collections.Generic名称空间
+列表 List/LinkedList  SortedList
+字典 Dictionary SortedDictionary
+集 HashSet   SortedSet 
+栈和队列 Stack Queue
+
+ListTest
+
+HashtableTest
+
+//排序
+//自己写排序程度
+//使用SortedXXXX类
+//使用Array.Sort方法
+ArraySort.cs
+Array.Sort(ary.(a,b)=>a.Length-b.Length)
+
+
+/*
+//算法
+有穷性
+确定性
+可行性
+输入输出
+*/
+
+//遍试算法(穷举)
+逻辑上：针对所有可能的情况进行判断
+形式上：for中用If
+水仙花数问题
+韩信点兵问题(余数问题)
+
+
+//迭代算法
+逻辑上：多次使用同一算法
+形式上：while用a=f(a)
+求平方根
+倍边法求PI
+
+
+//递归算法
+逻辑上：一个问题转化为同样的问题
+形式上：自己调用自己f(n)中用f(n-1)
+阶乘问题
+走台阶问题
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
