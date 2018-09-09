@@ -1,10 +1,18 @@
 using System;
 using System.IO;
 
-namespace Pra
+namespace FileOpen
 {
     class FileStreamPra
     {
+        public static void Main(string[] args)
+        {
+            ListFiles(new DirectoryInfo(@"E:\Desktop"));
+            Console.WriteLine("Hello World!");
+            Console.ReadKey();
+        }
+
+
         public static void ListFiles(FileSystemInfo info)
         {
             if (!info.Exists) return;
@@ -25,15 +33,6 @@ namespace Pra
                     ListFiles(files[i]);
                 }
             }
-        }
-    }
-    class FileOpen
-    {
-        public static void main(string[] args)
-        {
-            // ListFiles(new DirectoryInfo(@"C:\Users\Ted\Desktop"));
-            Console.WriteLine("Hello World!");
-            Console.ReadKey();
         }
     }
 }
