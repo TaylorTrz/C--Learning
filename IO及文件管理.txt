@@ -1,0 +1,144 @@
+﻿//System.IO名字空间
+//提供了许多用于文件和数据流进行读写操作的类
+
+//流的分类
+
+//Stream类  对所有文件类的抽象
+
+//按存取位置分
+FileStream   //文件流
+MemoryStream  //内存流
+BufferedStream  //过滤流、缓冲流
+
+//对内容进行分类  读写类 
+BinaryReader和BinaryWriter  //对二进制进行读写
+TextReader和TextWriter      //对文本进行读写
+StreamReader和StreamWriter  //对流...
+StringReader和StringWriter  //对字符串...
+
+//二者关系是包装的关系
+FileStream fs = new FileStream（@“c:\temp\foo.txt”,FileMode.Create）
+StreamWriter writer = new StreamWriter(fs);
+
+//包含的常用类
+
+//文件及文件夹管理
+//对文件和文件夹操作的类
+FileInfo //具体文件
+File //提供static方法   显示文件
+DirectoryInfo //具体的文件夹
+Directory  //提供static方法  显示文件夹
+FileSystemInfo //是...父类
+Path
+
+FileInfo与DirectoryInfo//显示文件及文件夹信息
+
+//FileInfo对象及属性
+建立对象
+new FileInfo(文件物理路径)
+常用属性
+Name  //文件名称
+Extension //文件拓展名
+FullName //文件完全路径
+Length  //文件大小，单位是字节
+CreationTime // 文件创建时间
+LastAccessTime  //上次访问时间
+LastWriteTime //上次修改时间
+DirectoryName  //所在文件夹
+Attributes //文件属性
+
+//DirectoryInfo对象及属性
+建立对象
+new DirectoryInfo(文件夹物理路径)
+常用属性
+Name  //文件夹名称
+FullName //文件夹完全路径
+CreationTime // 创建时间
+LastAccessTime  //上次访问时间
+LastWriteTime //上次修改时间
+Parent  //父文件夹
+Root  //所在根目录
+
+//文件的新建、复制、移动和、删除
+//所有File类的方法都是Static的，跟FileInfo不同，不能直接用方法，也不需要New一个实例
+Create(filePath)
+Copy(filePath1,filePath2)
+Move(filePath1,filePath2)
+Delete(filePath)
+Exists(filePath)
+CreateText(filePath)
+
+//文件夹的新建、移动和删除
+//Directory类的方法也都是一样
+CreateDirectory(DirPath)
+Copy(DirPath1,DirPath2)
+Move(DirPath1,DirPath2)
+Delete(DirPath)
+Exists(DirPath)
+GetDirectories(DirPath)
+GetFiles(DirPath)  //得到文件夹目录下的所有文件夹    文件名  得到的都是一个数组
+
+//显示指定文件夹下的子文件夹和子文件
+
+//Path类 提供路径的处理
+
+//MSDN 查看API文档
+
+//搜索文件夹下的文件
+ListAllFile.cs
+
+using System;
+using System.IO
+class ListAllFiles
+{
+public static void Main(string[] args)
+{
+ListFiles(new DirectoryInfo(@"c:\workspace"));
+}
+
+public static void ListFiles(FileSystemInfo info)
+{
+if(!info.Exists) return;
+
+DirectoryInfo dir = info as DirectoryInfo;
+if(dir == null) return; //不是目录，返回
+
+FileSystemInfo [] files = dir.GetFileSystemInfos();
+for(int i=; i<files.Length;i++)
+{
+FileInfo file = files[i] as FileInfo;
+if(file != null) //是文件
+{
+Console.WriteLine(file.FullName + "\t" + file.Length);
+}
+else  //是目录
+{
+ListFiles(files[i]); //对子目录进行递归调用
+}
+}
+}
+}
+
+//WwinForm中的文件对话框
+VS.net中工具箱（组件）->对话框
+包括打开文件、保存文件的对话框以及选择文件夹的对话框
+用ShowDialog可以用来打开对话框
+用GetSelectedFolder或GetFile等方法可以得到用户的选择结果
+
+//FileSystemWatcher类
+vs.net中工具箱->组件
+或者直接new FileSystemWatcher(path)
+包括Deleted、Renamed、Created等事件
+
+
+
+
+
+
+
+
+
+
+
+
+
