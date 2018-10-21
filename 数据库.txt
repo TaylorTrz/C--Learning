@@ -1,325 +1,336 @@
-//Êý¾Ý¿âDatabase
-//Êý¾Ý¿â¹ÜÀíÏµÍ³DBMS-->Oracle?MS SQL Server?Access(Ð¡ÐÍ×ÀÃæÊý¾Ý¿â)£¿MySQL(¿ªÔ´)
-//Êý¾Ý¿âÏµÍ³µÄÓÅµã£º¹²ÏíÐÔ¡¢¶ÀÁ¢ÐÔ¡¢ÍêÕûÐÔºÍÈßÓàÊý¾ÝÉÙ
-//¹ÜÀí¹¦ÄÜ£ºÊý¾Ý¶¨Òå/²Ù¿Ø/ÍêÕû/°²È«/²¢·¢
+//æ•°æ®åº“Database
+//æ•°æ®åº“ç®¡ç†ç³»ç»ŸDBMS-->Oracle?MS SQL Server?Access(å°åž‹æ¡Œé¢æ•°æ®åº“)ï¼ŸMySQL(å¼€æº)
+//æ•°æ®åº“ç³»ç»Ÿçš„ä¼˜ç‚¹ï¼šå…±äº«æ€§ã€ç‹¬ç«‹æ€§ã€å®Œæ•´æ€§å’Œå†—ä½™æ•°æ®å°‘
+//ç®¡ç†åŠŸèƒ½ï¼šæ•°æ®å®šä¹‰/æ“æŽ§/å®Œæ•´/å®‰å…¨/å¹¶å‘
 
-//¹ØÏµÐÍÊý¾Ý¿â(RDB)
-ÒÔ¶þÎ¬±íµÄÐÎÊ½×éÖ¯Êý¾Ý
-±íDataTable
-ÐÐDataRow:Ò²½Ð¼ÇÂ¼Record
-ÁÐDataColumn:Ò²½Ð×Ö¶ÎField
-Ö÷¼üPrimary Key Ä³¼¸¸öÁÐ×éºÏÆðÀ´£¬ÄÜÊ¶±ð³öÀ´¸úÆäËû¼ÇÂ¼²»Ò»ÑùµÄµØ·½£¬ÊÇÊý¾Ý¿â¹Ø¼ü²¿·Ö£»
-
-
-//Êý¾Ý¿â±íµÄÉè¼Æ
-
-//Í¼Êé¹ÜÀíÏµÍ³£º
-Êé¼Ç±í£º£»±àºÅID, ÊéÃû£¬×÷Õß£¬³ö°æÉç£¬¹Ø¼ü×Ö
-ÔºÏµ±í£º±àºÅID,Ãû³Æ£¬°ì¹«µØÖ·£¬°ì¹«µç»°
-¶ÁÕß±í£ºÈËÃû±àºÅID,ÐÕÃû£¬ÔºÏµ±àºÅ£¬Email
-PS.ÔºÏµÓë¶ÁÕßÊÇÒ»¶Ô¶àµÄ¹ØÏµ
-½èÔÄ±í£ºÈËÔ±±àºÅ£¬ÊéºÅ£¬ÈÕÆÚ
-PS.¶ÁÕßÓëÊé¼®ÊÇ¶à¶Ô¶àµÄ¹ØÏµ
-
-//ÊµÌå-¹ØÏµÍ¼(E-RÍ¼)Entity-RelationÍ¼
+//å…³ç³»åž‹æ•°æ®åº“(RDB)
+ä»¥äºŒç»´è¡¨çš„å½¢å¼ç»„ç»‡æ•°æ®
+è¡¨DataTable
+è¡ŒDataRow:ä¹Ÿå«è®°å½•Record
+åˆ—DataColumn:ä¹Ÿå«å­—æ®µField
+ä¸»é”®Primary Key æŸå‡ ä¸ªåˆ—ç»„åˆèµ·æ¥ï¼Œèƒ½è¯†åˆ«å‡ºæ¥è·Ÿå…¶ä»–è®°å½•ä¸ä¸€æ ·çš„åœ°æ–¹ï¼Œæ˜¯æ•°æ®åº“å…³é”®éƒ¨åˆ†ï¼›
 
 
+//æ•°æ®åº“è¡¨çš„è®¾è®¡
 
-//Êý¾Ý¿âµÄÊ¹ÓÃ
-ÓÃ¿ÉÊÓ»¯µÄ½çÃæ£ºÓÃSQL ServerµÄÆóÒµÓ¦ÓÃ½çÃæ
+//å›¾ä¹¦ç®¡ç†ç³»ç»Ÿï¼š
+ä¹¦è®°è¡¨ï¼šï¼›ç¼–å·ID, ä¹¦åï¼Œä½œè€…ï¼Œå‡ºç‰ˆç¤¾ï¼Œå…³é”®å­—
+é™¢ç³»è¡¨ï¼šç¼–å·ID,åç§°ï¼ŒåŠžå…¬åœ°å€ï¼ŒåŠžå…¬ç”µè¯
+è¯»è€…è¡¨ï¼šäººåç¼–å·ID,å§“åï¼Œé™¢ç³»ç¼–å·ï¼ŒEmail
+PS.é™¢ç³»ä¸Žè¯»è€…æ˜¯ä¸€å¯¹å¤šçš„å…³ç³»
+å€Ÿé˜…è¡¨ï¼šäººå‘˜ç¼–å·ï¼Œä¹¦å·ï¼Œæ—¥æœŸ
+PS.è¯»è€…ä¸Žä¹¦ç±æ˜¯å¤šå¯¹å¤šçš„å…³ç³»
 
-//SQL(Structured Query Language) ¼´½á¹¹»¯²éÑ¯ÓïÑÔ
-ÊÇÊý¾Ý¿âµÄ±ê×¼²Ù×÷ÓïÑÔ
-SQL°üº¬Êý¾Ý¶¨Òå¡¢Êý¾Ý²éÑ¯¡¢Êý¾Ý²Ù¿Ø¡¢Êý¾Ý¿ØÖÆµÈ¹¦ÄÜ
-×î³£ÓÃÓï¾ä£ºÔöÉ¾¸Ä²é
-CRUD-Create¡¢Retrieve¡¢Update¡¢Delete
+//å®žä½“-å…³ç³»å›¾(E-Rå›¾)Entity-Relationå›¾
 
 
-//³£ÓÃµÄSQL¾ÛºÏÓï¾ä
 
-Ñ¡ÔñÊý¾Ý
-SELECT [All | Distinct] [Top n [Percent]] <Ñ¡Ïî>
-FROM <±íÃûÁÐ±í>
-[Where <Ìõ¼þ>]
-[Group By <·Ö×éµÄ×Ö¶ÎÃûÁÐ±í> [Having <Ìõ¼þ>]]
-[Order By <ÅÅÐòµÄ×Ö¶ÎÃûÁÐ±í> [ASC | DESC]]
+//æ•°æ®åº“çš„ä½¿ç”¨
+ç”¨å¯è§†åŒ–çš„ç•Œé¢ï¼šç”¨SQL Serverçš„ä¼ä¸šåº”ç”¨ç•Œé¢
 
-1¡¢AllÊä³öËùÓÐ¼ÇÂ¼£¬¿ÉÊ¡ÂÔ£»DistinctÊä³öÎÞÖØ¸´½á¹ûµÄ¼ÇÂ¼; Top n ·µ»Ø²éÑ¯½á¹ûµÄÇ°nÐÐ£¬Percent·µ»ØÇ°n%ÐÐ
-2¡¢<Ñ¡Ïî>¿ÉÒÔÊÇ×Ö¶ÎÃû¡¢º¯Êý¡¢±í´ïÊ½£¬¶à¸öÑ¡Ïî¿ÉÓÃ¶ººÅ·Ö¸ô£»¿ÉÒÔ¸Ä±ä·µ»ØµÄÁÐ±êÌâ
-     <Ñ¡Ïî1>[AS <ÏÔÊ¾ÁÐÃû>], <Ñ¡Ïî2>[AS <ÏÔÊ¾ÁÐÃû>], ...
-     ³£ÓÃº¯Êý£ºSUM<×Ö¶ÎÃû> AVG<×Ö¶ÎÃû> MAX<×Ö¶ÎÃû> MIN<×Ö¶ÎÃû> COUNT<×Ö¶ÎÃû> COUNT(*)
-3¡¢<±íÃûÁÐ±í>ÊÇÒª²éÑ¯µÄ±í£¬¿ÉÑ¡Ôñ¶à¸ö±í£¬Ò²¿ÉÊ¹ÓÃ±ðÃûÀ´Çø·Ö²»Í¬µÄ±í£º
-     Select [<±ðÃû.>] <Ñ¡Ïî1> [AS <ÏÔÊ¾±ðÃû>], [<±ðÃû.>] <Ñ¡Ïî2> [AS <ÏÔÊ¾±ðÃû>]
-     From ±íÃû1[±ðÃû1], ±íÃû2[±ðÃû2]
-4¡¢Where²éÑ¯Ìõ¼þ£¬µ¥±íÓë¶à±íÖ®¼äµÄÌõ¼þ±í´ïÊ½£¬¿ÉÒÔÊ¹ÓÃ±È½ÏÔËËã·ûÓëÂß¼­ÔËËã·û
-5¡¢Group By ·Ö×é£¬½«Ö¸¶¨×Ö¶ÎÁÐ±íÖÐÓÐÏàÍ¬ÖµµÄrecordºÏ²¢³É×é
-6¡¢Order By °´ÕÕ×Ö¶ÎÅÅÐò£¬ASC±íÊ¾Ascend£¬DESC±íÊ¾descend
+//SQL(Structured Query Language) å³ç»“æž„åŒ–æŸ¥è¯¢è¯­è¨€
+æ˜¯æ•°æ®åº“çš„æ ‡å‡†æ“ä½œè¯­è¨€
+SQLåŒ…å«æ•°æ®å®šä¹‰ã€æ•°æ®æŸ¥è¯¢ã€æ•°æ®æ“æŽ§ã€æ•°æ®æŽ§åˆ¶ç­‰åŠŸèƒ½
+æœ€å¸¸ç”¨è¯­å¥ï¼šå¢žåˆ æ”¹æŸ¥
+CRUD-Createã€Retrieveã€Updateã€Delete
 
-Ôö¼ÓÊý¾Ý
-Insert Into <±íÃû> [(×Ö¶ÎÃû±í)] Values (×Ö¶ÎÖµÁÐ±í)
-Èç¹ûÃ»ÓÐÖ¸¶¨×Ö¶ÎÃû£¬Ä¬ÈÏ±íÖÐËùÓÐ×Ö¶Î²¢°´Ä¬ÈÏ±íÖÐË³ÐòÅÅÐò
+
+//å¸¸ç”¨çš„SQLèšåˆè¯­å¥
+
+é€‰æ‹©æ•°æ®
+SELECT [All | Distinct] [Top n [Percent]] <é€‰é¡¹>
+FROM <è¡¨ååˆ—è¡¨>
+[Where <æ¡ä»¶>]
+[Group By <åˆ†ç»„çš„å­—æ®µååˆ—è¡¨> [Having <æ¡ä»¶>]]
+[Order By <æŽ’åºçš„å­—æ®µååˆ—è¡¨> [ASC | DESC]]
+
+1ã€Allè¾“å‡ºæ‰€æœ‰è®°å½•ï¼Œå¯çœç•¥ï¼›Distinctè¾“å‡ºæ— é‡å¤ç»“æžœçš„è®°å½•; Top n è¿”å›žæŸ¥è¯¢ç»“æžœçš„å‰nè¡Œï¼ŒPercentè¿”å›žå‰n%è¡Œ
+2ã€<é€‰é¡¹>å¯ä»¥æ˜¯å­—æ®µåã€å‡½æ•°ã€è¡¨è¾¾å¼ï¼Œå¤šä¸ªé€‰é¡¹å¯ç”¨é€—å·åˆ†éš”ï¼›å¯ä»¥æ”¹å˜è¿”å›žçš„åˆ—æ ‡é¢˜
+     <é€‰é¡¹1>[AS <æ˜¾ç¤ºåˆ—å>], <é€‰é¡¹2>[AS <æ˜¾ç¤ºåˆ—å>], ...
+     å¸¸ç”¨å‡½æ•°ï¼šSUM<å­—æ®µå> AVG<å­—æ®µå> MAX<å­—æ®µå> MIN<å­—æ®µå> COUNT<å­—æ®µå> COUNT(*)
+3ã€<è¡¨ååˆ—è¡¨>æ˜¯è¦æŸ¥è¯¢çš„è¡¨ï¼Œå¯é€‰æ‹©å¤šä¸ªè¡¨ï¼Œä¹Ÿå¯ä½¿ç”¨åˆ«åæ¥åŒºåˆ†ä¸åŒçš„è¡¨ï¼š
+     Select [<åˆ«å.>] <é€‰é¡¹1> [AS <æ˜¾ç¤ºåˆ«å>], [<åˆ«å.>] <é€‰é¡¹2> [AS <æ˜¾ç¤ºåˆ«å>]
+     From è¡¨å1[åˆ«å1], è¡¨å2[åˆ«å2]
+4ã€WhereæŸ¥è¯¢æ¡ä»¶ï¼Œå•è¡¨ä¸Žå¤šè¡¨ä¹‹é—´çš„æ¡ä»¶è¡¨è¾¾å¼ï¼Œå¯ä»¥ä½¿ç”¨æ¯”è¾ƒè¿ç®—ç¬¦ä¸Žé€»è¾‘è¿ç®—ç¬¦
+5ã€Group By åˆ†ç»„ï¼Œå°†æŒ‡å®šå­—æ®µåˆ—è¡¨ä¸­æœ‰ç›¸åŒå€¼çš„recordåˆå¹¶æˆç»„
+6ã€Order By æŒ‰ç…§å­—æ®µæŽ’åºï¼ŒASCè¡¨ç¤ºAscendï¼ŒDESCè¡¨ç¤ºdescend
+
+å¢žåŠ æ•°æ®
+Insert Into <è¡¨å> [(å­—æ®µåè¡¨)] Values (å­—æ®µå€¼åˆ—è¡¨)
+å¦‚æžœæ²¡æœ‰æŒ‡å®šå­—æ®µåï¼Œé»˜è®¤è¡¨ä¸­æ‰€æœ‰å­—æ®µå¹¶æŒ‰é»˜è®¤è¡¨ä¸­é¡ºåºæŽ’åº
 Insert Into Student (Sno, Sname, EnrollingScore) values ('201210020112', 'wangyang', 550)
 
-¸üÐÂÊý¾Ý
-Update <±íÃû> Set <×Ö¶ÎÃû1>=<Öµ±í´ïÊ½1>[,<×Ö¶ÎÃû2>=<Öµ±í´ïÊ½2>]
-Where <Ìõ¼þ> 
-Ã»ÓÐÖ¸¶¨Where£¬¸üÐÂËùÓÐÐÐ
+æ›´æ–°æ•°æ®
+Update <è¡¨å> Set <å­—æ®µå1>=<å€¼è¡¨è¾¾å¼1>[,<å­—æ®µå2>=<å€¼è¡¨è¾¾å¼2>]
+Where <æ¡ä»¶> 
+æ²¡æœ‰æŒ‡å®šWhereï¼Œæ›´æ–°æ‰€æœ‰è¡Œ
 Update Student Set Phone='123456' Where Sno='121545'
 
-É¾³ýÊý¾Ý
-Delete From <±íÃû> [Where<Ìõ¼þ>]
-Ã»ÓÐÖ¸¶¨Where£¬É¾³ýËùÓÐÐÐ
+åˆ é™¤æ•°æ®
+Delete From <è¡¨å> [Where<æ¡ä»¶>]
+æ²¡æœ‰æŒ‡å®šWhereï¼Œåˆ é™¤æ‰€æœ‰è¡Œ
 Delete From Student Where Sno Like '2009%'
 
-´´½¨¼°É¾³ýÊý¾Ý±í
+åˆ›å»ºåŠåˆ é™¤æ•°æ®è¡¨
 Create Table [...]
    (id integer, name char(10), age integer)
 Drop Table [...]
 
-//Í¨¹ý±à³ÌÀ´²Ù×÷Êý¾Ý¿â
+//é€šè¿‡ç¼–ç¨‹æ¥æ“ä½œæ•°æ®åº“
 
-//Client/ServerÄ£Ê½C/SÄ£Ê½
-Êý¾Ý¿âÌá¹©·þÎñ£¬Server
-³ÌÐòÊÇ¿Í»§¶Ë£¬Client
-¿Í»§¶ËÍ¨¹ýSQLÃüÁîÀ´Ïò·þÎñ¶Ë·¢³öÇëÇó
-//±à³ÌµÄÈÎÎñ
-Í¨¹ýÓÃ»§½çÃæ»ñÈ¡²ÎÊý£¬²¢ÐÎ³ÉSQLÓï¾ä
-½¨Á¢ÓëÊý¾Ý¿âµÄÁ¬½Ó
-ÏòÊý¾Ý¿â¹ÜÀíÏµÍ³DBMS·¢³öÃüÁî
-´ÓÊý¾Ý¿âµÃµ½Êý¾Ý²¢ÏÔÊ¾µ½ÓÃ»§½çÃæ
+//Client/Serveræ¨¡å¼C/Sæ¨¡å¼
+æ•°æ®åº“æä¾›æœåŠ¡ï¼ŒServer
+ç¨‹åºæ˜¯å®¢æˆ·ç«¯ï¼ŒClient
+å®¢æˆ·ç«¯é€šè¿‡SQLå‘½ä»¤æ¥å‘æœåŠ¡ç«¯å‘å‡ºè¯·æ±‚
+//ç¼–ç¨‹çš„ä»»åŠ¡
+é€šè¿‡ç”¨æˆ·ç•Œé¢èŽ·å–å‚æ•°ï¼Œå¹¶å½¢æˆSQLè¯­å¥
+å»ºç«‹ä¸Žæ•°æ®åº“çš„è¿žæŽ¥
+å‘æ•°æ®åº“ç®¡ç†ç³»ç»ŸDBMSå‘å‡ºå‘½ä»¤
+ä»Žæ•°æ®åº“å¾—åˆ°æ•°æ®å¹¶æ˜¾ç¤ºåˆ°ç”¨æˆ·ç•Œé¢
 
 
 
 
 ADO.NET
 
-System.DataÃû³Æ¿Õ¼ä
-Î¢Èí·ÃÎÊÊý¾Ý¿âµÄ¼¼ÊõADO.NET
-ÊµÏÖÊý¾Ý¿âµÄ·ÃÎÊ£ºÌá¹©±ê×¼CRUD½Ó¿Ú¡¢¶Ô²»Í¬µÄÊý¾Ý¿âÌá¹©Í³Ò»µÄ·ÃÎÊ½Ó¿Ú
+System.Dataåç§°ç©ºé—´
+å¾®è½¯è®¿é—®æ•°æ®åº“çš„æŠ€æœ¯ADO.NET
+å®žçŽ°æ•°æ®åº“çš„è®¿é—®ï¼šæä¾›æ ‡å‡†CRUDæŽ¥å£ã€å¯¹ä¸åŒçš„æ•°æ®åº“æä¾›ç»Ÿä¸€çš„è®¿é—®æŽ¥å£
 
 ODBC(open Database Connection)
 DAO(Data Access Object)
 ADO (ActiveX Data Object)
 ADO.NET
 
-Êý¾Ý·ÃÎÊ²ã
+æ•°æ®è®¿é—®å±‚
 
-Êý¾ÝÌá¹©³ÌÐò DataProvider
+æ•°æ®æä¾›ç¨‹åº DataProvider
 //Provider
-//SQL Server.NETÊý¾ÝÌá¹©³ÌÐò£¬ÓÃÓÚSQL Server 7.0¼°ÒÔÉÏ°æ±¾
-System.Data.SqlClientÃüÃû¿Õ¼ä
-//Ole DB.NETÊý¾ÝÌá¹©³ÌÐò£¬ÓÃÓÚOLE DB(Access)Êý¾ÝÔ´
+//SQL Server.NETæ•°æ®æä¾›ç¨‹åºï¼Œç”¨äºŽSQL Server 7.0åŠä»¥ä¸Šç‰ˆæœ¬
+System.Data.SqlClientå‘½åç©ºé—´
+//Ole DB.NETæ•°æ®æä¾›ç¨‹åºï¼Œç”¨äºŽOLE DB(Access)æ•°æ®æº
 System.Data.OleDb
-//ODBC.NETÊý¾ÝÌá¹©³ÌÐò£¬ÓÃÓÚODBCÊý¾ÝÔ´
+//ODBC.NETæ•°æ®æä¾›ç¨‹åºï¼Œç”¨äºŽODBCæ•°æ®æº
 System.Data.Odbc
-//Oracle.NET£¬·ÃÎÊOracle
+//Oracle.NETï¼Œè®¿é—®Oracle
 System.Data.OracleClient
 
-.NET FrameworkÊý¾ÝÌá¹©³ÌÐò°üº¬4¸öºËÐÄ¶ÔÏó
-Connection ½¨Á¢ÓëÌØ¶¨Êý¾ÝÔ´µÄÁ¬½Ó
-Command ¶ÔÊý¾ÝÔ´Ö´ÐÐÃüÁî
-DataReader ´ÓÊý¾ÝÖÐ·µ»ØÒ»¸ö½öÏòÇ°µÄÖ»¶ÁÊý¾ÝÁ÷
-DataAdapter ÔÚÊý¾ÝÔ´ÓëÊý¾Ý¼¯ÖÐ½»»»Êý¾Ý
+.NET Frameworkæ•°æ®æä¾›ç¨‹åºåŒ…å«4ä¸ªæ ¸å¿ƒå¯¹è±¡
+Connection å»ºç«‹ä¸Žç‰¹å®šæ•°æ®æºçš„è¿žæŽ¥
+Command å¯¹æ•°æ®æºæ‰§è¡Œå‘½ä»¤
+DataReader ä»Žæ•°æ®ä¸­è¿”å›žä¸€ä¸ªä»…å‘å‰çš„åªè¯»æ•°æ®æµ
+DataAdapter åœ¨æ•°æ®æºä¸Žæ•°æ®é›†ä¸­äº¤æ¢æ•°æ®
 
-Êý¾Ý¼¯ DataSet
-ÊÇADO.NETÁ½¸öºËÐÄ×é¼þÖ®Ò»£¬ÊÇ´ÓÊý¾ÝÔ´µÃµ½µÄÊý¾ÝÔÚÄÚ´æÖÐµÄ»º´æ£¬ÓÃXMLÃèÊö¡£
-Ã¿¸öDataSetÓÉÈô¸É¸öDataTable¶ÔÏó×é³É£¬DataTable¶ÔÏóÓÉRow¡¢Column¡¢Straint×é³É
-DataRelation¶ÔÏóÓÃÀ´±íÊ¾Á½¸öDataTable¶ÔÏóÖ®¼äµÄ¸¸×Ó¹ØÏµ£¬ÀàËÆÓÚ¹ØÏµÊý¾Ý¿âÖ®¼äµÄÖ÷¼üÁÐºÍÍâ¼üÁÐÖ®¼äµÄ¹ØÁª¡£
+æ•°æ®é›† DataSet
+æ˜¯ADO.NETä¸¤ä¸ªæ ¸å¿ƒç»„ä»¶ä¹‹ä¸€ï¼Œæ˜¯ä»Žæ•°æ®æºå¾—åˆ°çš„æ•°æ®åœ¨å†…å­˜ä¸­çš„ç¼“å­˜ï¼Œç”¨XMLæè¿°ã€‚
+æ¯ä¸ªDataSetç”±è‹¥å¹²ä¸ªDataTableå¯¹è±¡ç»„æˆï¼ŒDataTableå¯¹è±¡ç”±Rowã€Columnã€Straintç»„æˆ
+DataRelationå¯¹è±¡ç”¨æ¥è¡¨ç¤ºä¸¤ä¸ªDataTableå¯¹è±¡ä¹‹é—´çš„çˆ¶å­å…³ç³»ï¼Œç±»ä¼¼äºŽå…³ç³»æ•°æ®åº“ä¹‹é—´çš„ä¸»é”®åˆ—å’Œå¤–é”®åˆ—ä¹‹é—´çš„å…³è”ã€‚
 
-ÌåÏµ½á¹¹
+ä½“ç³»ç»“æž„
 .NET Framework Data Provider -->Database
 DataSet-->XML
 
 
 
-//Êý¾Ý¿âµÄ·ÃÎÊ·½·¨
+//æ•°æ®åº“çš„è®¿é—®æ–¹æ³•
 
-Á½ÖÖ»ù±¾Ä£Ê½£ºÁª»úÄ£Ê½ÓëÍÑ»úÄ£Ê½ 
+ä¸¤ç§åŸºæœ¬æ¨¡å¼ï¼šè”æœºæ¨¡å¼ä¸Žè„±æœºæ¨¡å¼ 
 
-·½Ê½1£ºÍÑ»úÄ£Ê½Ê¹ÓÃConnection¡¢Command¡¢DataAdapter¡¢DataSet¶ÔÏó
-´¦ÀíÖ®Ç°ÓëÊý¾Ý¿âÁ¬½Ó£¬´¦Àí¹ý³ÌÖÐ¶Ï¿ª£¬´¦ÀíÍêÖ®ºóÁ¬½ÓÊý¾Ý¿â¸üÐÂÊý¾Ý
+æ–¹å¼1ï¼šè„±æœºæ¨¡å¼ä½¿ç”¨Connectionã€Commandã€DataAdapterã€DataSetå¯¹è±¡
+å¤„ç†ä¹‹å‰ä¸Žæ•°æ®åº“è¿žæŽ¥ï¼Œå¤„ç†è¿‡ç¨‹ä¸­æ–­å¼€ï¼Œå¤„ç†å®Œä¹‹åŽè¿žæŽ¥æ•°æ®åº“æ›´æ–°æ•°æ®
 
-·½Ê½2£ºÁª»úÄ£Ê½Ê¹ÓÃConnection¡¢Command¡¢DataReader¶ÔÏó
-Ò»Ö±±£³ÖÁ¬½Ó×´Ì¬
+æ–¹å¼2ï¼šè”æœºæ¨¡å¼ä½¿ç”¨Connectionã€Commandã€DataReaderå¯¹è±¡
+ä¸€ç›´ä¿æŒè¿žæŽ¥çŠ¶æ€
 
-¶¼ÒªÊ¹ÓÃConnectionºÍCommand
-Áª»úÄ£Ê½Ö»Ðè½øÐÐÒ»´ÎÁ¬½Ó£¬ËÙ¶È¿ì£¬ÎÞÐè¿¼ÂÇÊý¾ÝÒ»ÖÂÐÔÎÊÌâ£¬ÊÊÓÃÓÚÖÐÐ¡ÐÍÏµÍ³µÄÊý¾ÝÊµÊ±±ä»¯£¬Õ¼ÓÃ×ÊÔ´Á¿´ó
-ÍÑ»úÄ£Ê½Ðè×ÊÔ´Á¿Ð¡¡¢Ðè¶à´ÎÁ¬½Ó¡¢ËÙ¶ÈÂý¡¢´æÔÚÊý¾ÝÒ»ÖÂÐÔÎÊÌâ£¬ÊÊÓÃÓÚÊý¾ÝÁ¿´ó£¬ÍøÂç½á¹¹¸´ÔÓµÄÊý¾Ý²éÑ¯´óÐÍÏµÍ³
+éƒ½è¦ä½¿ç”¨Connectionå’ŒCommand
+è”æœºæ¨¡å¼åªéœ€è¿›è¡Œä¸€æ¬¡è¿žæŽ¥ï¼Œé€Ÿåº¦å¿«ï¼Œæ— éœ€è€ƒè™‘æ•°æ®ä¸€è‡´æ€§é—®é¢˜ï¼Œé€‚ç”¨äºŽä¸­å°åž‹ç³»ç»Ÿçš„æ•°æ®å®žæ—¶å˜åŒ–ï¼Œå ç”¨èµ„æºé‡å¤§
+è„±æœºæ¨¡å¼éœ€èµ„æºé‡å°ã€éœ€å¤šæ¬¡è¿žæŽ¥ã€é€Ÿåº¦æ…¢ã€å­˜åœ¨æ•°æ®ä¸€è‡´æ€§é—®é¢˜ï¼Œé€‚ç”¨äºŽæ•°æ®é‡å¤§ï¼Œç½‘ç»œç»“æž„å¤æ‚çš„æ•°æ®æŸ¥è¯¢å¤§åž‹ç³»ç»Ÿ
 
-//Connection¶ÔÏó
+//Connectionå¯¹è±¡
 
-ÓÃÓÚÁ¬½ÓÊý¾Ý¿âÓëÓ¦ÓÃ³ÌÐò
-×îÖØÒªµÄÊôÐÔÊÇÁ¬½Ó×Ö·û´®ConnectionString£¬ÊÇÒ»¸ö×Ö·û´®£¬°üº¬ÐÅÏ¢£º
+ç”¨äºŽè¿žæŽ¥æ•°æ®åº“ä¸Žåº”ç”¨ç¨‹åº
+æœ€é‡è¦çš„å±žæ€§æ˜¯è¿žæŽ¥å­—ç¬¦ä¸²ConnectionStringï¼Œæ˜¯ä¸€ä¸ªå­—ç¬¦ä¸²ï¼ŒåŒ…å«ä¿¡æ¯ï¼š
 Provider, DataSource, Initial Catalog, UserID, Password, Connection TimeOut, Integrated Security, Persist Security info
 
-¶ÔÓÚ²»Í¬µÄData ProviderÓÐ²»Í¬Connection¶ÔÏó
-Á¬½ÓSQL ServerÊý¾Ý¿â£¬¿ÉÒÔSqlClientÊý¾ÝÇý¶¯³ÌÐò(System.Data.SqlClient)£¬Ò²¿ÉÒÔOleDbÊý¾ÝÇý¶¯³ÌÐò(System.Data.OleDb)
-1) Á¬½Ó×Ö·û´®
-Data Source=·þÎñÆ÷Ãû£»Initial Catalog=Êý¾Ý¿âÃû£» User ID=ÕË»§£»Password=ÃÜÂë
-2) ´´½¨SqlConnection¶ÔÏó²¢ÉèÖÃConnectionStringÊôÐÔ
+å¯¹äºŽä¸åŒçš„Data Provideræœ‰ä¸åŒConnectionå¯¹è±¡
+è¿žæŽ¥SQL Serveræ•°æ®åº“ï¼Œå¯ä»¥SqlClientæ•°æ®é©±åŠ¨ç¨‹åº(System.Data.SqlClient)ï¼Œä¹Ÿå¯ä»¥OleDbæ•°æ®é©±åŠ¨ç¨‹åº(System.Data.OleDb)
+1) è¿žæŽ¥å­—ç¬¦ä¸²
+Data Source=æœåŠ¡å™¨åï¼›Initial Catalog=æ•°æ®åº“åï¼› User ID=è´¦æˆ·ï¼›Password=å¯†ç 
+2) åˆ›å»ºSqlConnectionå¯¹è±¡å¹¶è®¾ç½®ConnectionStringå±žæ€§
 SqlConnection scon = new SqlConnection();
-scon.Connectionstring = Á¬½Ó×Ö·û´®£»
+scon.Connectionstring = è¿žæŽ¥å­—ç¬¦ä¸²ï¼›
 
-´ò¿ªºÍ¹Ø±ÕÁ¬½Ó
+æ‰“å¼€å’Œå…³é—­è¿žæŽ¥
 scon.Opne();
 scon.Close();
 
 
-//ADO.NETÁª»úÄ£Ê½µÄÊý¾Ý´æÈ¡£¬¿Í»§¶ËÓë·þÎñÆ÷Ê¼ÖÕ±£³ÖÁª»ú×´Ì¬
+//ADO.NETè”æœºæ¨¡å¼çš„æ•°æ®å­˜å–ï¼Œå®¢æˆ·ç«¯ä¸ŽæœåŠ¡å™¨å§‹ç»ˆä¿æŒè”æœºçŠ¶æ€
 
-Êý¾Ý´æÈ¡²½Öè£¨SQL Server£©£º
-1) Ê¹ÓÃSqlConnection¶ÔÏóÓëÊý¾Ý¿â½¨Á¢Á¬½Ó
-2) Ê¹ÓÃSqlCommand¶ÔÏóÏòÊý¾Ý¿â¼ìË÷Êý¾Ý£¬»òÖ±½Ó½øÐÐ±à¼­
-3) Èç¹ûSqlCommand¶ÔÏóÖ´ÐÐ¼ìË÷²Ù×÷£¬ÔòÈ¡³öÊý¾Ý·ÅÔÚSqlDataReader¶ÔÏó¶ÁÈ¡£¬Ö´ÐÐ±à¼­²Ù×÷£¬Ö±½Ó½øÐÐ²½Öè(5)
-4) Íê³ÉÊý¾Ý¼ìË÷²Ù×÷ºó£¬¹Ø±ÕSqlDataReader¶ÔÏó
-5) ¹Ø±ÕSqlConnection¶ÔÏó
+æ•°æ®å­˜å–æ­¥éª¤ï¼ˆSQL Serverï¼‰ï¼š
+1) ä½¿ç”¨SqlConnectionå¯¹è±¡ä¸Žæ•°æ®åº“å»ºç«‹è¿žæŽ¥
+2) ä½¿ç”¨SqlCommandå¯¹è±¡å‘æ•°æ®åº“æ£€ç´¢æ•°æ®ï¼Œæˆ–ç›´æŽ¥è¿›è¡Œç¼–è¾‘
+3) å¦‚æžœSqlCommandå¯¹è±¡æ‰§è¡Œæ£€ç´¢æ“ä½œï¼Œåˆ™å–å‡ºæ•°æ®æ”¾åœ¨SqlDataReaderå¯¹è±¡è¯»å–ï¼Œæ‰§è¡Œç¼–è¾‘æ“ä½œï¼Œç›´æŽ¥è¿›è¡Œæ­¥éª¤(5)
+4) å®Œæˆæ•°æ®æ£€ç´¢æ“ä½œåŽï¼Œå…³é—­SqlDataReaderå¯¹è±¡
+5) å…³é—­SqlConnectionå¯¹è±¡
 
-//Command¶ÔÏó
-½¨Á¢Êý¾ÝÁ¬½Óºó£¬¿ÉÒÔÀûÓÃConmand¶ÔÏóÀ´Ö´ÐÐÃüÁî²¢´ÓÊý¾ÝÔ´·µ»Ø½á¹û£¬ÊµÏÖÔöÉ¾²é¸Ä
+//Commandå¯¹è±¡
+å»ºç«‹æ•°æ®è¿žæŽ¥åŽï¼Œå¯ä»¥åˆ©ç”¨Conmandå¯¹è±¡æ¥æ‰§è¡Œå‘½ä»¤å¹¶ä»Žæ•°æ®æºè¿”å›žç»“æžœï¼Œå®žçŽ°å¢žåˆ æŸ¥æ”¹
 
-ÊôÐÔ£º
-Connection: »ñÈ¡»òÉèÖÃCommand¶ÔÏóÊ¹ÓÃµÄConnection¶ÔÏó
-CommandType: »ñÈ¡»òÉèÖÃÒ»¸öÖµ£¬Ã¶¾ÙÀàÐÍÓÐÈý¸ö³ÉÔ±£ºStoredProcedure/ TableDirect/ Text
-CommandText£º»ñÈ¡»òÉèÖÃ¶ÔÊý¾Ý¿âÖ´ÐÐµÄSQLÓï¾ä»ò´æ´¢¹ý³Ì
-³£ÓÃ·½·¨£º
-ExecuteReader()£ºÖ´ÐÐSQLÓï¾ä(Select)²¢Éú³ÉÒ»¸öDataReader¶ÔÏó
-ExecuteScalar()£ºÖ´ÐÐ²éÑ¯£¬²¢·µ»Ø²éÑ¯½á¹ûµÄµÚÒ»ÐÐµÄµÚÒ»ÁÐ£¬ºöÂÔÆäËûÐÐÁÐ¡£
-ExecuteNonQuery()£ºÖ´ÐÐ²»·µ»ØÐÐµÄSQLÓï¾ä(Insert¡¢Update¡¢Delete)²¢·µ»ØÊÜÓ°ÏìµÄÐÐÊý
+å±žæ€§ï¼š
+Connection: èŽ·å–æˆ–è®¾ç½®Commandå¯¹è±¡ä½¿ç”¨çš„Connectionå¯¹è±¡
+CommandType: èŽ·å–æˆ–è®¾ç½®ä¸€ä¸ªå€¼ï¼Œæžšä¸¾ç±»åž‹æœ‰ä¸‰ä¸ªæˆå‘˜ï¼šStoredProcedure/ TableDirect/ Text
+CommandTextï¼šèŽ·å–æˆ–è®¾ç½®å¯¹æ•°æ®åº“æ‰§è¡Œçš„SQLè¯­å¥æˆ–å­˜å‚¨è¿‡ç¨‹
+å¸¸ç”¨æ–¹æ³•ï¼š
+ExecuteReader()ï¼šæ‰§è¡ŒSQLè¯­å¥(Select)å¹¶ç”Ÿæˆä¸€ä¸ªDataReaderå¯¹è±¡
+ExecuteScalar()ï¼šæ‰§è¡ŒæŸ¥è¯¢ï¼Œå¹¶è¿”å›žæŸ¥è¯¢ç»“æžœçš„ç¬¬ä¸€è¡Œçš„ç¬¬ä¸€åˆ—ï¼Œå¿½ç•¥å…¶ä»–è¡Œåˆ—ã€‚
+ExecuteNonQuery()ï¼šæ‰§è¡Œä¸è¿”å›žè¡Œçš„SQLè¯­å¥(Insertã€Updateã€Delete)å¹¶è¿”å›žå—å½±å“çš„è¡Œæ•°
 
-´´½¨Command³£ÓÃ·½·¨1£º
-SqlCommand ÃüÃû¶ÔÏóÃû=new SqlCommand();
-ÃüÃû¶ÔÏóÃû.Connection=Á¬½Ó¶ÔÏóÃû£»
-ÃüÃû¶ÔÏóÃû.CommandType=CommandType.Ã¶¾Ù³ÉÔ±£»
-ÃüÃû¶ÔÏóÃû.CommandText=ÃüÃûÎÄ±¾
-´´½¨Command³£ÓÃ·½·¨1£º
-SqlCommand ÃüÃû¶ÔÏóÃû=new SqlCommand(ÃüÁîÎÄ±¾£¬Á¬½Ó¶ÔÏóÃû);
-ÃüÃû¶ÔÏóÃû.CommandType=CommandType.Ã¶¾Ù³ÉÔ±;
-
-
-DataReader¶ÔÏó
-
-DataReader¶ÔÏóÌá¹©Ò»ÖÖ ´ÓÊý¾Ý¿â¶ÁÈ¡ÐÐµÄÖ»½øÁ÷µÄÁ¬½ÓÊý¾Ý·ÃÎÊ·½Ê½£¬°üº¬ÔÚDataReaderÖÐµÄÊý¾ÝÊÇ´ÓÊý¾Ý¿â·µ»ØµÄÖ»¶Á£¬Ö»ÄÜÏòÏÂ¹ö¶¯µÄÁ÷ÐÅÏ¢£¬ÊÊºÏÖ»¶ÁÈ¡Ò»´ÎµÄÊý¾Ý
-ADO.NET×î¸ßÐ§µÃµ½Êý¾ÝµÄ·½·¨£¨£¿£©
-DataReader¶ÔÏó²»ÄÜÖ±½ÓÊµÀý»¯£¬±ØÐëÍ¨¹ýCommand¶ÔÏóµÄExecuteReader·½·¨À´Éú³É¡£´´½¨ºÃÖ®ºó£¬Ê¹ÓÃRead·½·¨½«Òþº¬µÄ¼ÇÂ¼Ö¸ÕëÖ¸ÏòµÚÒ»¸ö½á¹û¼¯µÄµÚÒ»Ìõ¼ÇÂ¼£¬Ã¿µ÷ÓÃÒ»´ÎRead·½·¨»ñÈ¡Ò»ÐÐÊý¾Ý£¬²¢½«Ö¸ÕëÏòºóÒÆ¶¯Ò»²½
-
-³£ÓÃÊôÐÔ£º
-FieldCount£º»ñÈ¡µ±Ç°ÐÐµÄÁÐÊý
-HasRows£º·µ»ØÒ»¸öÖµ£¬Ö¸Ê¾ÊÇ·ñ°üº¬Ò»ÐÐ»ò¶àÐÐ£¬ÔòÎªTrue£¬·ñÔòFalse
-IsClosed£º»ñÈ¡Ò»¸öÖµ£¬Ö¸Ê¾DataReader¶ÔÏóÊÇ·ñÒÑ¾­¹Ø±Õ
-
-³£ÓÃ·½·¨£º
-close()£º¹Ø±ÕDataReader¶ÔÏó£¬Ã¿´ÎÊ¹ÓÃÍê¶¼Ó¦¸Ãµ÷ÓÃ
-GetName(int index)£º¸ø¶¨Index±íÊ¾´Ó0¿ªÊ¼µÄÐòÁÐºÅ£¬»ñÈ¡ÁÐµÄÃû³Æ£¬
-GetOrdinal(string name)£º¸ø¶¨ÁÐÃû³Æ£¬»ñÈ¡ÁÐµÄÐòºÅ
-NextResult()£º¶ÁÈ¡Åú´¦ÀíSQLÓï¾ä£¬Ê¹µÃDataReaderÇ°½øµ½ÏÂÒ»¸ö½á¹û¼¯£¬·µ»ØÖµÎª²¼¶ûÐÍ
-Read()£ºÊ¹µÃDataReaderÇ°½øµ½ÏÂÒ»Ìõ¼ÇÂ¼£¬·µ»ØÖµÎª²¼¶ûÐÍ
-»¹ÓÐÒ»ÏµÁÐGet·½·¨£¬µ±¶¨Î»µ½Ò»Ìõ¼ÇÂ¼£¬¸ù¾Ý¸÷ÁÐÊý¾ÝÀàÐÍ£¬Ñ¡Ôñ²»Í¬µÄGet·½·¨
+åˆ›å»ºCommandå¸¸ç”¨æ–¹æ³•1ï¼š
+SqlCommand å‘½åå¯¹è±¡å=new SqlCommand();
+å‘½åå¯¹è±¡å.Connection=è¿žæŽ¥å¯¹è±¡åï¼›
+å‘½åå¯¹è±¡å.CommandType=CommandType.æžšä¸¾æˆå‘˜ï¼›
+å‘½åå¯¹è±¡å.CommandText=å‘½åæ–‡æœ¬
+åˆ›å»ºCommandå¸¸ç”¨æ–¹æ³•1ï¼š
+SqlCommand å‘½åå¯¹è±¡å=new SqlCommand(å‘½ä»¤æ–‡æœ¬ï¼Œè¿žæŽ¥å¯¹è±¡å);
+å‘½åå¯¹è±¡å.CommandType=CommandType.æžšä¸¾æˆå‘˜;
 
 
+DataReaderå¯¹è±¡
 
-ADO.NETÍÑ»úÄ£Ê½µÄÊý¾Ý´æÈ¡
-´ò¿ªÊý¾ÝÁ¬½Ó²¢¶ÁÈ¡Êý¾Ýºó¹Ø±ÕÊý¾Ý¿â£¬µ«ÈÔ¿ÉÒÔÊ¹ÓÃÕâÐ©Êý¾Ý£¬µ±ÐèÒª¸üÐÂÊý¾ÝÊ±ÔÙÖØÐÂ´ò¿ªÁ¬½Ó
+DataReaderå¯¹è±¡æä¾›ä¸€ç§ ä»Žæ•°æ®åº“è¯»å–è¡Œçš„åªè¿›æµçš„è¿žæŽ¥æ•°æ®è®¿é—®æ–¹å¼ï¼ŒåŒ…å«åœ¨DataReaderä¸­çš„æ•°æ®æ˜¯ä»Žæ•°æ®åº“è¿”å›žçš„åªè¯»ï¼Œåªèƒ½å‘ä¸‹æ»šåŠ¨çš„æµä¿¡æ¯ï¼Œé€‚åˆåªè¯»å–ä¸€æ¬¡çš„æ•°æ®
+ADO.NETæœ€é«˜æ•ˆå¾—åˆ°æ•°æ®çš„æ–¹æ³•ï¼ˆï¼Ÿï¼‰
+DataReaderå¯¹è±¡ä¸èƒ½ç›´æŽ¥å®žä¾‹åŒ–ï¼Œå¿…é¡»é€šè¿‡Commandå¯¹è±¡çš„ExecuteReaderæ–¹æ³•æ¥ç”Ÿæˆã€‚åˆ›å»ºå¥½ä¹‹åŽï¼Œä½¿ç”¨Readæ–¹æ³•å°†éšå«çš„è®°å½•æŒ‡é’ˆæŒ‡å‘ç¬¬ä¸€ä¸ªç»“æžœé›†çš„ç¬¬ä¸€æ¡è®°å½•ï¼Œæ¯è°ƒç”¨ä¸€æ¬¡Readæ–¹æ³•èŽ·å–ä¸€è¡Œæ•°æ®ï¼Œå¹¶å°†æŒ‡é’ˆå‘åŽç§»åŠ¨ä¸€æ­¥
 
-ÍÑ»ú´æÈ¡Êý¾Ý²½Öè(SQL Server)
-1£©Ê¹ÓÃSqlConnection¶ÔÏóÓëÊý¾Ý¿â½¨Á¢Á¬½Ó
-2£©Ê¹ÓÃSqlCommand¶ÔÏóÏòÊý¾Ý¿â¼ìË÷Êý¾Ý
-3£©°ÑSqlCommand¶ÔÏóÈ¡»ØÀ´µÄÊý¾Ý£¬·Åµ½SqlDataAdapter¶ÔÏóÖÐ
-5£©°ÑSqlDataAdapter¶ÔÏóµÄÊý¾ÝÌî³äµ½DataSet¶ÔÏóÖÐ
-6£©¹Ø±ÕSqlConnection¶ÔÏó
-7£©ËùÓÐÊý¾Ý´æÈ¡¶¼ÔÚDataSet¶ÔÏóÖÐ½øÐÐ
-8£©ÔÙ´Î´ò¿ªSqlConnection¶ÔÏóÓëÊý¾Ý¿â½øÐÐÁ¬½Ó
-9£©ÀûÓÃSqlDataAdapter¶ÔÏó¶ÔÊý¾Ý¿â½øÐÐ¸üÐÂ
-9£©¹Ø±ÕSqlConnection¶ÔÏó
+å¸¸ç”¨å±žæ€§ï¼š
+FieldCountï¼šèŽ·å–å½“å‰è¡Œçš„åˆ—æ•°
+HasRowsï¼šè¿”å›žä¸€ä¸ªå€¼ï¼ŒæŒ‡ç¤ºæ˜¯å¦åŒ…å«ä¸€è¡Œæˆ–å¤šè¡Œï¼Œåˆ™ä¸ºTrueï¼Œå¦åˆ™False
+IsClosedï¼šèŽ·å–ä¸€ä¸ªå€¼ï¼ŒæŒ‡ç¤ºDataReaderå¯¹è±¡æ˜¯å¦å·²ç»å…³é—­
 
-DataAdapter¶ÔÏó
-Á¬½ÓDataSet¶ÔÏóÓëÊý¾ÝÔ´
-4¸öÊôÐÔ£º
-SelectCommand¡¢InsertCommand¡¢UpdateCommand¡¢DeleteCommand
-Í¬Ê±¿ÉÒÔ´´½¨CommandBuilder¶ÔÏóÀ´×Ô¶¯Éú³ÉÓÃÓÚµ¥±í¸üÐÂµÄSQLÓïÑÔ£¬×¢Òâ£º½öÕë¶ÔÊý¾Ý¿âÖÐµÄµ¥¸ö±í£¬²¢ÇÒÖÁÉÙ·µ»ØÒ»¸öÖ÷¼üÁÐ»òÎ¨Ò»ÁÐ£¨×Ô¶¯²úÉúCommand£©
-·½·¨£º
-//Ê¹ÓÃFill·½·¨´ÓÊý¾Ý¿âÖÐ»ñÈ¡Êý¾ÝÀ´Ìî³äDataSet¡¢Ê¹ÓÃUpdate°ÑDataSetÖÐµÄÊý¾Ý¸üÐÂÖÁÊý¾Ý¿âÖÐ
-Ö»½øÐÐµ¥´Î´ò¿ª£¬¿ÉÒÔ²»ÏÔÊ¾µØÊ¹ÓÃOpen·½·¨´ò¿ªÁ¬½Ó£¬Ö´ÐÐ¶à´Î´ò¿ª²Ù×÷£¬Ó¦ÏÔÊ¾µØµ÷ÓÃOpen¡¢Close·½·¨£¬±£Ö¤Õ¼ÓÃ×ÊÔ´ÉÙ
-Fill·½·¨µÄÖØÔØ£º
+å¸¸ç”¨æ–¹æ³•ï¼š
+close()ï¼šå…³é—­DataReaderå¯¹è±¡ï¼Œæ¯æ¬¡ä½¿ç”¨å®Œéƒ½åº”è¯¥è°ƒç”¨
+GetName(int index)ï¼šç»™å®šIndexè¡¨ç¤ºä»Ž0å¼€å§‹çš„åºåˆ—å·ï¼ŒèŽ·å–åˆ—çš„åç§°ï¼Œ
+GetOrdinal(string name)ï¼šç»™å®šåˆ—åç§°ï¼ŒèŽ·å–åˆ—çš„åºå·
+NextResult()ï¼šè¯»å–æ‰¹å¤„ç†SQLè¯­å¥ï¼Œä½¿å¾—DataReaderå‰è¿›åˆ°ä¸‹ä¸€ä¸ªç»“æžœé›†ï¼Œè¿”å›žå€¼ä¸ºå¸ƒå°”åž‹
+Read()ï¼šä½¿å¾—DataReaderå‰è¿›åˆ°ä¸‹ä¸€æ¡è®°å½•ï¼Œè¿”å›žå€¼ä¸ºå¸ƒå°”åž‹
+è¿˜æœ‰ä¸€ç³»åˆ—Getæ–¹æ³•ï¼Œå½“å®šä½åˆ°ä¸€æ¡è®°å½•ï¼Œæ ¹æ®å„åˆ—æ•°æ®ç±»åž‹ï¼Œé€‰æ‹©ä¸åŒçš„Getæ–¹æ³•
+
+
+
+ADO.NETè„±æœºæ¨¡å¼çš„æ•°æ®å­˜å–
+æ‰“å¼€æ•°æ®è¿žæŽ¥å¹¶è¯»å–æ•°æ®åŽå…³é—­æ•°æ®åº“ï¼Œä½†ä»å¯ä»¥ä½¿ç”¨è¿™äº›æ•°æ®ï¼Œå½“éœ€è¦æ›´æ–°æ•°æ®æ—¶å†é‡æ–°æ‰“å¼€è¿žæŽ¥
+
+è„±æœºå­˜å–æ•°æ®æ­¥éª¤(SQL Server)
+1ï¼‰ä½¿ç”¨SqlConnectionå¯¹è±¡ä¸Žæ•°æ®åº“å»ºç«‹è¿žæŽ¥
+2ï¼‰ä½¿ç”¨SqlCommandå¯¹è±¡å‘æ•°æ®åº“æ£€ç´¢æ•°æ®
+3ï¼‰æŠŠSqlCommandå¯¹è±¡å–å›žæ¥çš„æ•°æ®ï¼Œæ”¾åˆ°SqlDataAdapterå¯¹è±¡ä¸­
+5ï¼‰æŠŠSqlDataAdapterå¯¹è±¡çš„æ•°æ®å¡«å……åˆ°DataSetå¯¹è±¡ä¸­
+6ï¼‰å…³é—­SqlConnectionå¯¹è±¡
+7ï¼‰æ‰€æœ‰æ•°æ®å­˜å–éƒ½åœ¨DataSetå¯¹è±¡ä¸­è¿›è¡Œ
+8ï¼‰å†æ¬¡æ‰“å¼€SqlConnectionå¯¹è±¡ä¸Žæ•°æ®åº“è¿›è¡Œè¿žæŽ¥
+9ï¼‰åˆ©ç”¨SqlDataAdapterå¯¹è±¡å¯¹æ•°æ®åº“è¿›è¡Œæ›´æ–°
+9ï¼‰å…³é—­SqlConnectionå¯¹è±¡
+
+DataAdapterå¯¹è±¡
+è¿žæŽ¥DataSetå¯¹è±¡ä¸Žæ•°æ®æº
+4ä¸ªå±žæ€§ï¼š
+SelectCommandã€InsertCommandã€UpdateCommandã€DeleteCommand
+åŒæ—¶å¯ä»¥åˆ›å»ºCommandBuilderå¯¹è±¡æ¥è‡ªåŠ¨ç”Ÿæˆç”¨äºŽå•è¡¨æ›´æ–°çš„SQLè¯­è¨€ï¼Œæ³¨æ„ï¼šä»…é’ˆå¯¹æ•°æ®åº“ä¸­çš„å•ä¸ªè¡¨ï¼Œå¹¶ä¸”è‡³å°‘è¿”å›žä¸€ä¸ªä¸»é”®åˆ—æˆ–å”¯ä¸€åˆ—ï¼ˆè‡ªåŠ¨äº§ç”ŸCommandï¼‰
+æ–¹æ³•ï¼š
+//ä½¿ç”¨Fillæ–¹æ³•ä»Žæ•°æ®åº“ä¸­èŽ·å–æ•°æ®æ¥å¡«å……DataSetã€ä½¿ç”¨UpdateæŠŠDataSetä¸­çš„æ•°æ®æ›´æ–°è‡³æ•°æ®åº“ä¸­
+åªè¿›è¡Œå•æ¬¡æ‰“å¼€ï¼Œå¯ä»¥ä¸æ˜¾ç¤ºåœ°ä½¿ç”¨Openæ–¹æ³•æ‰“å¼€è¿žæŽ¥ï¼Œæ‰§è¡Œå¤šæ¬¡æ‰“å¼€æ“ä½œï¼Œåº”æ˜¾ç¤ºåœ°è°ƒç”¨Openã€Closeæ–¹æ³•ï¼Œä¿è¯å ç”¨èµ„æºå°‘
+Fillæ–¹æ³•çš„é‡è½½ï¼š
 Fill(DataSet ds)
 Fill(DataSet dataSet, string Table)
-//Update°ÑÔÚDataSet¶ÔÏóÖÐ½øÐÐµÄ²åÈë¡¢É¾³ýºÍÐÞ¸Ä²Ù×÷¸üÐÂµ½Êý¾Ý¿âÖÐ£¬²¢·µ»Ø³É¹¦¸üÐÂµÄÐÐÊý
-Update·½·¨µÄÖØÔØ£º
+//UpdateæŠŠåœ¨DataSetå¯¹è±¡ä¸­è¿›è¡Œçš„æ’å…¥ã€åˆ é™¤å’Œä¿®æ”¹æ“ä½œæ›´æ–°åˆ°æ•°æ®åº“ä¸­ï¼Œå¹¶è¿”å›žæˆåŠŸæ›´æ–°çš„è¡Œæ•°
+Updateæ–¹æ³•çš„é‡è½½ï¼š
 Update(DataSet ds)
 Update(DateSet dataSet, string Table)
-//´´½¨DataAdapter¶ÔÏó
-·½·¨1£º
-SqlCommand ÃüÃû¶ÔÏóÃû=new SqlCommand(Select ÃüÁîÎÄ±¾£¬Á¬½Ó¶ÔÏóÃû)£»
-SqlDataAdapter Êý¾ÝÊÊÅäÆ÷¶ÔÏóÃû=new SqlDataAdapter(ÃüÁî¶ÔÏóÃû);
-·½·¨2£º
-SqlDataAdapter Êý¾ÝÊÊÅäÆ÷¶ÔÏóÃû=new SqlDataAdapter(Select ÃüÁîÎÄ±¾£¬Á¬½Ó¶ÔÏóÃû);
+//åˆ›å»ºDataAdapterå¯¹è±¡
+æ–¹æ³•1ï¼š
+SqlCommand å‘½åå¯¹è±¡å=new SqlCommand(Select å‘½ä»¤æ–‡æœ¬ï¼Œè¿žæŽ¥å¯¹è±¡å)ï¼›
+SqlDataAdapter æ•°æ®é€‚é…å™¨å¯¹è±¡å=new SqlDataAdapter(å‘½ä»¤å¯¹è±¡å);
+æ–¹æ³•2ï¼š
+SqlDataAdapter æ•°æ®é€‚é…å™¨å¯¹è±¡å=new SqlDataAdapter(Select å‘½ä»¤æ–‡æœ¬ï¼Œè¿žæŽ¥å¯¹è±¡å);
 
-DataSet¶ÔÏó
-ÊÇÒ»¸ö´æ´¢ÔÚ¿Í»§¶ËÄÚ´æÖÐµÄÁÙÊ±Êý¾Ý¿â£¬¿Í»§¶ËËùÓÐ´æÈ¡²Ù×÷¶¼ÊÇ¶ÔDataSet¶ÔÏó½øÐÐ
+DataSetå¯¹è±¡
+æ˜¯ä¸€ä¸ªå­˜å‚¨åœ¨å®¢æˆ·ç«¯å†…å­˜ä¸­çš„ä¸´æ—¶æ•°æ®åº“ï¼Œå®¢æˆ·ç«¯æ‰€æœ‰å­˜å–æ“ä½œéƒ½æ˜¯å¯¹DataSetå¯¹è±¡è¿›è¡Œ
 
-´´½¨·½·¨1£º
-DataSet Êý¾Ý¼¯¶ÔÏóÃû=new DataSet();
-´´½¨·½·¨2£º
-DataSet Êý¾Ý¼¯¶ÔÏóÃû=new DataSet(Êý¾Ý¼¯Ãû³Æ);
+åˆ›å»ºæ–¹æ³•1ï¼š
+DataSet æ•°æ®é›†å¯¹è±¡å=new DataSet();
+åˆ›å»ºæ–¹æ³•2ï¼š
+DataSet æ•°æ®é›†å¯¹è±¡å=new DataSet(æ•°æ®é›†åç§°);
 
-DataSet¶ÔÏó
-°üÀ¨¶à¸öDataTable¶ÔÏó(TablesÊôÐÔ£¬ÊÇDataTableCollectionÀà)ºÍDataRelation¶ÔÏó(Relations¶ÔÏó£¬ÊÇDataRelationCollectionÀà)
+DataSetå¯¹è±¡
+åŒ…æ‹¬å¤šä¸ªDataTableå¯¹è±¡(Tableså±žæ€§ï¼Œæ˜¯DataTableCollectionç±»)å’ŒDataRelationå¯¹è±¡(Relationså¯¹è±¡ï¼Œæ˜¯DataRelationCollectionç±»)
 
-DataTable¶ÔÏó
-°üÀ¨¶à¸öDataRow(RowsÊôÐÔ£¬DataRowCollection¼¯ºÏÀà)¡¢DataColumn(ColumnsÊôÐÔ£¬DataColumnCollection¼¯ºÏÀà)¡¢Constraint¶ÔÏó(ConstraintsÊôÐÔ£¬ConstraintCollection¼¯ºÏÀà)
-´´½¨DataTableµÄ·½·¨1£º
-DataTable Êý¾Ý±í¶ÔÏóÃû=new DataTable();
-´´½¨DataTableµÄ·½·¨2£º
-DataTable Êý¾Ý±í¶ÔÏóÃû=new DataTable(Êý¾Ý±íÃû³Æ);
+DataTableå¯¹è±¡
+åŒ…æ‹¬å¤šä¸ªDataRow(Rowså±žæ€§ï¼ŒDataRowCollectioné›†åˆç±»)ã€DataColumn(Columnså±žæ€§ï¼ŒDataColumnCollectioné›†åˆç±»)ã€Constraintå¯¹è±¡(Constraintså±žæ€§ï¼ŒConstraintCollectioné›†åˆç±»)
+åˆ›å»ºDataTableçš„æ–¹æ³•1ï¼š
+DataTable æ•°æ®è¡¨å¯¹è±¡å=new DataTable();
+åˆ›å»ºDataTableçš„æ–¹æ³•2ï¼š
+DataTable æ•°æ®è¡¨å¯¹è±¡å=new DataTable(æ•°æ®è¡¨åç§°);
 
-DataColumn¶ÔÏó
-Ïàµ±ÓÚÊý¾Ý±íÖÐµÄÁÐ£¬´ú±íÒ»¸ö×Ö¶ÎField
-³£ÓÃ·½·¨£º
-DataColumn ÁÐ¶ÔÏóÃû=new DataColumn();
-DataColumn ÁÐ¶ÔÏóÃû=new DataColumn(ÁÐÃû);
-DataColumn ÁÐ¶ÔÏóÃû=new DataColumn(ÁÐÃû, ÀàÐÍ);
+DataColumnå¯¹è±¡
+ç›¸å½“äºŽæ•°æ®è¡¨ä¸­çš„åˆ—ï¼Œä»£è¡¨ä¸€ä¸ªå­—æ®µField
+å¸¸ç”¨æ–¹æ³•ï¼š
+DataColumn åˆ—å¯¹è±¡å=new DataColumn();
+DataColumn åˆ—å¯¹è±¡å=new DataColumn(åˆ—å);
+DataColumn åˆ—å¯¹è±¡å=new DataColumn(åˆ—å, ç±»åž‹);
 
-DataRow¶ÔÏó
-Ïàµ±ÓÚÊý¾Ý±íÖÐµÄÐÐ£¬´ú±íÒ»¸ö¼ÇÂ¼Record
-//Ìí¼Ó¼ÇÂ¼ÐÐ
-1£©´´½¨DataRow¶ÔÏó
-2£©Ö¸¶¨DataRow¶ÔÏó²»Í¬×Ö¶ÎµÄÖµ
-3£©µ÷ÓÃDataTable¶ÔÏóRows¼¯ºÏÊôÐÔµÄAdd·½·¨
-//²éÕÒ¼ÇÂ¼ÐÐ
-Ê¹ÓÃRows¼¯ºÏµÄFind·½·¨²éÕÒÖ¸¶¨Ö÷¼üÖµµÄ¼ÇÂ¼ÐÐ
-//ÐÞ¸Ä¼ÇÂ¼ÐÐ
-1£©»ñÈ¡Ö¸¶¨¼ÇÂ¼ÐÐµÄDataRow¶ÔÏó
-2£©µ÷ÓÃDataRow¶ÔÏóµÄBeginEdit·½·¨½øÈë¼ÇÂ¼ÐÐµÄ±à¼­Ä£Ê½
-3£©¸ü¸Ä¼ÇÂ¼ÐÐµÄÁÐµÄÖµ
-4£©µ÷ÓÃDataRow¶ÔÏóµÄEndEdit·½·¨ÍË³ö¼ÇÂ¼ÐÐµÄ±à¼­Ä£Ê½
-//É¾³ý¼ÇÂ¼ÐÐ
-Ê¹ÓÃDataRow¶ÔÏóµÄDelete·½·¨É¾³ý¼ÇÂ¼ÐÐ
-DataRow¶ÔÏóÃû.Delete();
-//RowStateÊôÐÔ
-·´Ó³¼ÇÂ¼ÐÐµÄ²Ù×÷×´Ì¬£¬ÆäÖµÊÇDataRowStateÃ¶¾Ù³ÉÔ±Ö®Ò»
-Added¡¢Deleted¡¢Detached(ÒÑ´´½¨)¡¢Modified¡¢Unchanged(µ÷ÓÃDataRow¶ÔÏóµÄAcceptChanges·½·¨Ê±£¬×´Ì¬ÎªUnchanged)
-AcceptChanges·½·¨ÓëRejectChanges·½·¨
+DataRowå¯¹è±¡
+ç›¸å½“äºŽæ•°æ®è¡¨ä¸­çš„è¡Œï¼Œä»£è¡¨ä¸€ä¸ªè®°å½•Record
+//æ·»åŠ è®°å½•è¡Œ
+1ï¼‰åˆ›å»ºDataRowå¯¹è±¡
+2ï¼‰æŒ‡å®šDataRowå¯¹è±¡ä¸åŒå­—æ®µçš„å€¼
+3ï¼‰è°ƒç”¨DataTableå¯¹è±¡Rowsé›†åˆå±žæ€§çš„Addæ–¹æ³•
+//æŸ¥æ‰¾è®°å½•è¡Œ
+ä½¿ç”¨Rowsé›†åˆçš„Findæ–¹æ³•æŸ¥æ‰¾æŒ‡å®šä¸»é”®å€¼çš„è®°å½•è¡Œ
+//ä¿®æ”¹è®°å½•è¡Œ
+1ï¼‰èŽ·å–æŒ‡å®šè®°å½•è¡Œçš„DataRowå¯¹è±¡
+2ï¼‰è°ƒç”¨DataRowå¯¹è±¡çš„BeginEditæ–¹æ³•è¿›å…¥è®°å½•è¡Œçš„ç¼–è¾‘æ¨¡å¼
+3ï¼‰æ›´æ”¹è®°å½•è¡Œçš„åˆ—çš„å€¼
+4ï¼‰è°ƒç”¨DataRowå¯¹è±¡çš„EndEditæ–¹æ³•é€€å‡ºè®°å½•è¡Œçš„ç¼–è¾‘æ¨¡å¼
+//åˆ é™¤è®°å½•è¡Œ
+ä½¿ç”¨DataRowå¯¹è±¡çš„Deleteæ–¹æ³•åˆ é™¤è®°å½•è¡Œ
+DataRowå¯¹è±¡å.Delete();
+//RowStateå±žæ€§
+åæ˜ è®°å½•è¡Œçš„æ“ä½œçŠ¶æ€ï¼Œå…¶å€¼æ˜¯DataRowStateæžšä¸¾æˆå‘˜ä¹‹ä¸€
+Addedã€Deletedã€Detached(å·²åˆ›å»º)ã€Modifiedã€Unchanged(è°ƒç”¨DataRowå¯¹è±¡çš„AcceptChangesæ–¹æ³•æ—¶ï¼ŒçŠ¶æ€ä¸ºUnchanged)
+AcceptChangesæ–¹æ³•ä¸ŽRejectChangesæ–¹æ³•
 
-ADO.NETºÍXML
-DataSet¶ÔÏó¿É´®ÁÐ»¯XML£¬XML¿É·´´®ÁÐ»¯³ÉDataSet¶ÔÏó
+ADO.NETå’ŒXML
+DataSetå¯¹è±¡å¯ä¸²åˆ—åŒ–XMLï¼ŒXMLå¯åä¸²åˆ—åŒ–æˆDataSetå¯¹è±¡
 ReadXml()
 WriteXml()
 
 
 
-¾Æµê¹ÜÀíÏµÍ³
+é…’åº—ç®¡ç†ç³»ç»Ÿ
 
-·Ö²ã¼Ü¹¹
-UI:         ÓÃ»§½çÃæ²ã user graphical interface
-BLL:       ÒµÎñÂß¼­²ã bussiness logic layer
-DAL£º    Êý¾Ý·ÃÎÊ²ã data access layer   
-Model:   Êý¾ÝÄ£ÐÍ
+åˆ†å±‚æž¶æž„
+UI:         ç”¨æˆ·ç•Œé¢å±‚ user graphical interface
+BLL:       ä¸šåŠ¡é€»è¾‘å±‚ bussiness logic layer
+DALï¼š    æ•°æ®è®¿é—®å±‚ data access layer   
+Model:   æ•°æ®æ¨¡åž‹
 
 ORMapping Object-relation Mapping
-¶ÔÏó-¹ØÏµÓ³Éä
+å¯¹è±¡-å…³ç³»æ˜ å°„
 
 
+//Microsoft.Jet.OLEDB.4.0ä¸ŽMicrosoft.ACE.OLEDB.12.0
 
+ACE å¼•æ“Žæ˜¯éš Office 2007 ä¸€èµ·å‘å¸ƒçš„æ•°æ®åº“è¿žæŽ¥ç»„ä»¶ï¼Œæ—¢å¯ä»¥è®¿é—® Office 2007ï¼Œä¹Ÿå¯ä»¥è®¿é—® Office 97-2003ã€‚
 
+å¦å¤–ï¼šMicrosoft.ACE.OLEDB.12.0 å¯ä»¥è®¿é—®æ­£åœ¨æ‰“å¼€çš„ Excel æ–‡ä»¶ï¼Œè€Œ Microsoft.Jet.OLEDB.4.0 æ˜¯ä¸å¯ä»¥çš„ã€‚
+
+æ‰€ä»¥ï¼Œåœ¨ä½¿ç”¨ä¸åŒç‰ˆæœ¬çš„officeæ—¶ï¼Œè¦æ³¨æ„ä½¿ç”¨åˆé€‚çš„å¼•æ“Žã€‚
+
+ä»¥ä¸Šå¯¹accessåŒæ ·æœ‰æ•ˆã€‚
+
+Jetè¿žæŽ¥è¯­å¥ï¼šProvider=Microsoft.Jet.OLEDB.4.0;Data Source=|DataDirectory|\æ‚¨ çš„æ•°æ®åº“å.mdb;Persist Security Info=True;Jet OLEDB:Database Password=æ‚¨çš„æ•°æ®åº“å¯†ç 
+
+ACEè¿žæŽ¥è¯­å¥ï¼šProvider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\æ‚¨ çš„æ•°æ®åº“å.accdb;Persist Security Info=True;Jet OLEDB:Database Password=æ‚¨çš„æ•°æ®åº“å¯†ç 
 
 
 
