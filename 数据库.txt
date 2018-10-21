@@ -321,6 +321,7 @@ ORMapping Object-relation Mapping
 //Microsoft.Jet.OLEDB.4.0与Microsoft.ACE.OLEDB.12.0
 
 ACE 引擎是随 Office 2007 一起发布的数据库连接组件，既可以访问 Office 2007，也可以访问 Office 97-2003。
+组件下载地址：http://download.microsoft.com/download/7/0/3/703ffbcb-dc0c-4e19-b0da-1463960fdcdb/AccessDatabaseEngine.exe
 
 另外：Microsoft.ACE.OLEDB.12.0 可以访问正在打开的 Excel 文件，而 Microsoft.Jet.OLEDB.4.0 是不可以的。
 
